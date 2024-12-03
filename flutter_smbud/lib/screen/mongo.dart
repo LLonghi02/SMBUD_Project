@@ -10,14 +10,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      title: 'Neo4j',
-      home: Neo4j(),
+      title: 'Mongo',
+      home: Mongo(),
     );
   }
 }
 
-class Neo4j extends ConsumerWidget {
-  const Neo4j({super.key});
+class Mongo extends ConsumerWidget {
+  const Mongo({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -29,7 +29,7 @@ class Neo4j extends ConsumerWidget {
     return Scaffold(
       backgroundColor: backcolor,
       appBar: const TopBar(
-        title: 'Neo4j: FOODMART',
+        title: 'MongoDB: BOOK RECOMMENDER',
       ),
       body: SingleChildScrollView(
         // Rende il contenuto scrollabile.
@@ -40,7 +40,7 @@ class Neo4j extends ConsumerWidget {
               width: double.infinity,
               height: 150,
               child: Image.asset(
-                'assets/images/food.jpg', // Percorso dell'immagine
+                'assets/images/book.jpg', // Percorso dell'immagine
                 fit: BoxFit.cover,
               ),
             ),
@@ -49,7 +49,7 @@ class Neo4j extends ConsumerWidget {
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 16.0),
               child: Text(
-                'The project uses Neo4j to analyze foodmart data, modeling relationships between customers, products, sales, stores, and promotions. ',
+                'Analyzing a dataset in MongoDB that contains information about Users, Ratings, and Books provides a unique opportunity to gain meaningful insights into user behavior, reading preferences, and book popularity. ',
                 style: AppFonts.text,
                 textAlign: TextAlign.center,
               ),
@@ -64,10 +64,10 @@ class Neo4j extends ConsumerWidget {
                 child: ElevatedButton(
                   onPressed: () {
                     // Navigazione verso un'altra pagina o altra azione.
-                    /*Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => const SecondPage()),
-        );*/
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) =>  DSBook()),
+                    );
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor:
@@ -86,27 +86,16 @@ class Neo4j extends ConsumerWidget {
             ),
             const SizedBox(height: 13), // Spaziatura tra i componenti.
 
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16.0),
-              child: Text(
-                'The queries developed aim to study the performance of the foodmart by analyzing sales trends, the effectiveness of promotions, '
-                'and customer behavior, with the goal of optimizing business performance.',
-                style: AppFonts.text,
-                textAlign: TextAlign.center,
-              ),
-            ),
-                        const SizedBox(height: 13), // Spaziatura tra i componenti.
-
             TextWithButtonCard(
               text: 'Study customer behavior based on past purchases.',
               buttonColor: buttonColor,
               onPressed: () {
-                Navigator.push(
+                /* Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => QN1(),
+                    builder: (context) => const AnotherPage(),
                   ),
-                );
+                );*/
               },
             ),
             const SizedBox(height: 13),

@@ -18,21 +18,22 @@ class _SchermataState extends State<Schermata> {
     // Avvia il timer per navigare alla HomePage dopo 3 secondi
     _timer = Timer(const Duration(seconds: 3), () {
       Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (_) =>  const Neo4j()),
+        MaterialPageRoute(builder: (_) => const Neo4j()),
       );
     });
   }
 
   @override
   void dispose() {
-    _timer.cancel(); // Assicurati di cancellare il timer quando lo stato viene eliminato
+    _timer
+        .cancel(); // Assicurati di cancellare il timer quando lo stato viene eliminato
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     // Utilizza context.read per accedere al provider
-    const backcolor = Color(0xFF92e2f7);
+    const backcolor = Color(0xFFa4bfa7);
 
     return Scaffold(
       body: Stack(
@@ -59,8 +60,12 @@ class _SchermataState extends State<Schermata> {
                 const SizedBox(height: 16),
                 // Testo sotto l'immagine
                 const Text(
-                  'Group 49',
+                  'SMBUD - GROUP 49',
                   style: AppFonts.screenTitle,
+                ),
+                const Text(
+                  'Forner, Longhi, Cavalieri',
+                  style: AppFonts.appTitle,
                 ),
               ],
             ),

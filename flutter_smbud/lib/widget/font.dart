@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 
 class AppFonts {
   static const TextStyle appTitle = TextStyle(
-    fontFamily: 'MyFont',
-    fontSize: 15, // Dimensione del font
+    fontSize: 20, // Dimensione del font
     fontWeight: FontWeight.bold, // Grassetto
     color: Colors.white, // Colore del testo
   );
@@ -15,39 +14,24 @@ class AppFonts {
     color: Colors.white, // Colore del testo
   );
 
-  static const TextStyle emo = TextStyle(
-    fontSize: 10, // Dimensione del font
-    color: Color(0xFF4FA69E), // Colore del testo
-  );
-
-  static const TextStyle calenda = TextStyle(
-    fontSize: 15, // Dimensione del font
-    color: Color(0xffd2f7ef), // Colore del testo
-  );
-
-//settingPage
-  static const TextStyle sett = TextStyle(
-    fontSize: 15, // Dimensione del font
-    color: Color(0xFF4FA69E), // Colore del testo
-  );
-  static const TextStyle settTitle = TextStyle(
-    fontFamily: 'MyFont',
-    fontSize: 20, // Dimensione del font
-    fontWeight: FontWeight.bold, // Grassetto
-    color: Color(0xffd2f7ef), // Colore del testo
-  );
-
-  static const TextStyle mind = TextStyle(
-    fontSize: 15, // Dimensione del font
-    //fontWeight: FontWeight.bold, // Grassetto
-    color: Color(0xFF00807F), // Colore del testo
-  );
-
-//clickable
-  static const TextStyle sign = TextStyle(
-    fontFamily: 'MyFont',
+  static const TextStyle button = TextStyle(
     fontSize: 18, // Dimensione del font
-    fontWeight: FontWeight.bold, // Grassetto
-    color: Color(0xFF00807F), // Colore del testo
+    fontWeight: FontWeight.bold,
+    color: Colors.white, // Colore del testo
+  );
+
+  static const TextStyle text = TextStyle(
+    fontSize: 12,
+    height: 1.5,
+  );
+  static const TextStyle textQ = TextStyle(
+    fontSize: 14,
+    height: 1.5,
+  );
+  static const TextStyle textBold = TextStyle(
+    fontSize: 20,
+    fontWeight: FontWeight.bold,
+    fontStyle: FontStyle.italic, 
+    height: 1.5,
   );
 }

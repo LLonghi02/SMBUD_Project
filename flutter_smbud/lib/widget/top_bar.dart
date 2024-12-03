@@ -3,7 +3,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_smbud/importer.dart';
 
 class TopBar extends ConsumerWidget implements PreferredSizeWidget {
-  const TopBar({super.key});
+  final String title; // Nuovo parametro
+
+  const TopBar({required this.title, super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -11,25 +13,25 @@ class TopBar extends ConsumerWidget implements PreferredSizeWidget {
 
     return AppBar(
       backgroundColor: accentColor,
-      automaticallyImplyLeading: false, // Disabilita la freccia di ritorno automatica
+      automaticallyImplyLeading: false,
       title: Row(
-        mainAxisAlignment: MainAxisAlignment.start, // Allineamento a sinistra
-        crossAxisAlignment: CrossAxisAlignment.center, // Centra verticalmente
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           SizedBox(
-            width: 60, // Larghezza personalizzata
-            height: 60, // Altezza personalizzata
+            width: 50,
+            height: 50,
             child: Image.asset(
-              'assets/images/logo.png', // Percorso dell'immagine
-              fit: BoxFit.contain, // Adatta l'immagine senza tagliarla
+              'assets/images/logo.png',
+              fit: BoxFit.contain,
             ),
           ),
-          const SizedBox(width: 8), // Spazio tra immagine e testo
-          const Text(
-            'Group 49',
+          const SizedBox(width: 8),
+          Text(
+            title, // Usa il titolo dinamico
             style: AppFonts.appTitle,
           ),
-          const Spacer(), // Spinge gli altri widget a destra
+          const Spacer(),
         ],
       ),
     );

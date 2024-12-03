@@ -1,4 +1,5 @@
 import 'package:flutter_smbud/importer.dart';
+import 'package:flutter_smbud/screen/mongo.dart';
 
 class BottomBar extends ConsumerWidget {
   const BottomBar({super.key});
@@ -38,7 +39,9 @@ class BottomBar extends ConsumerWidget {
           ),
           GestureDetector(
             onTap: () {
-              // Aggiungi la tua logica qui
+             Navigator.of(context).pushReplacement(
+                MaterialPageRoute(builder: (_) => const Mongo()),
+              );
             },
             child: Image.asset(
               'assets/images/mongo.png', // Percorso dell'immagine

@@ -32,3 +32,6 @@ flutter:
     - assets/images/mongo.png
     - assets/images/neo.png
     - assets/images/book.jpg
+    - assets/images/dataset/bookDS.png
+    - assets/images/dataset/ratDS.png
+    - assets/images/dataset/userDS.png
