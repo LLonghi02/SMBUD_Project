@@ -1,18 +1,13 @@
 // Configura il file CSV e la collezione
 const fs = require('fs');
-/*const filePath = "C:/Users/laral/Desktop/SMBUD/SMBUD_Project/career_change_prediction_dataset.csv";
-const collection = db.carrer_rec;*/
 
-/*const filePath = "C:/Users/laral/Desktop/SMBUD/SMBUD_Project/Book Recommendation/Books.csv";
-const collection = db.Books;*/
 
-const filePath = "C:/Users/laral/Desktop/SMBUD/SMBUD_Project/Book Recommendation/Users.csv";
-const collection = db.Users_Complete;
+const filePath = "C:/Users/laral/Desktop/SMBUD/SMBUD_Project/career_change_prediction_dataset.csv";
+const collection = db.Carrer;
 
-/*const filePath = "C:/Users/laral/Desktop/SMBUD/SMBUD_Project/Book Recommendation/Ratings.csv";
-const collection = db.Ratings;*/
 
 // Funzione per leggere e parsare il CSV
+
 function importCSV(filePath) {
     const lines = fs.readFileSync(filePath, 'utf8').split('\n');
     const headers = lines[0].split(',');
