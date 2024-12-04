@@ -6,11 +6,11 @@ const collection = db.carrer_rec;*/
 /*const filePath = "C:/Users/laral/Desktop/SMBUD/SMBUD_Project/Book Recommendation/Books.csv";
 const collection = db.Books;*/
 
-/*const filePath = "C:/Users/laral/Desktop/SMBUD/SMBUD_Project/Book Recommendation/Users.csv";
-const collection = db.Users;*/
+const filePath = "C:/Users/laral/Desktop/SMBUD/SMBUD_Project/Book Recommendation/Users.csv";
+const collection = db.Users_Complete;
 
-const filePath = "C:/Users/laral/Desktop/SMBUD/SMBUD_Project/Book Recommendation/Ratings.csv";
-const collection = db.Ratings;
+/*const filePath = "C:/Users/laral/Desktop/SMBUD/SMBUD_Project/Book Recommendation/Ratings.csv";
+const collection = db.Ratings;*/
 
 // Funzione per leggere e parsare il CSV
 function importCSV(filePath) {
