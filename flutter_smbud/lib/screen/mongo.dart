@@ -29,7 +29,7 @@ class Mongo extends ConsumerWidget {
     return Scaffold(
       backgroundColor: backcolor,
       appBar: const TopBar(
-        title: 'MongoDB: BOOK RECOMMENDER',
+        title: 'MongoDB: CARRER',
       ),
       body: SingleChildScrollView(
         // Rende il contenuto scrollabile.
@@ -40,7 +40,7 @@ class Mongo extends ConsumerWidget {
               width: double.infinity,
               height: 150,
               child: Image.asset(
-                'assets/images/book.jpg', // Percorso dell'immagine
+                'assets/images/work.png', // Percorso dell'immagine
                 fit: BoxFit.cover,
               ),
             ),
@@ -66,7 +66,7 @@ class Mongo extends ConsumerWidget {
                     // Navigazione verso un'altra pagina o altra azione.
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) =>  DSBook()),
+                      MaterialPageRoute(builder: (context) =>  DSCarrer()),
                     );
                   },
                   style: ElevatedButton.styleFrom(
