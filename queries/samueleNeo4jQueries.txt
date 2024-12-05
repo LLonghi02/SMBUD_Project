@@ -1,0 +1,50 @@
+1) topStores:
+
+Find the top 5 stores that earned more
+
+MATCH (s:Store)<-[:IN_STORE]-(sa:Sale)-[l:LINE_ITEM]->(:Product)
+WITH s, sum(l.price*l.quantity)/10000 AS sales
+ORDER BY sales DESC
+RETURN s.name, sales LIMIT 5
+
+N.B: the sum value has been divided by a factor 10000 because the prices were in a wrong format (e.g. 7039 meaning 0,7039 $)
+
+2) lessMoney:
+
+Find, for each store, which department made less money, that's usefull in order to design new promotion for that store
+
+MATCH (st:Store)<-[:IN_STORE]-(sa:Sale)-[l:LINE_ITEM]->(pr:Product)-[:IN_CATEGORY]->(sc:ProductSubCategory)-[:IN_DEPARTMENT]->(dep:Department)
+WITH st, dep, sum(l.price*l.quantity)/10000 AS sales
+ORDER BY st.name ASC, sales ASC
+WITH st, collect([dep, sales]) as dep_sales
+RETURN st.name, dep_sales[0][0].name AS department, dep_sales[0][1] AS profit
+
+3) promotionsEffectiveness:
+
+Find the number of purchase made with and without using a promotion, to analyse their effectiveness:
+
+MATCH (s:Sale)-[:APPLIED_PROMOTION]->(pr:Promotion)
+WITH collect(s) AS cs, COUNT(DISTINCT s) AS with_promo
+MATCH (ns:Sale)
+WHERE NOT ns IN cs
+WITH with_promo, COUNT(DISTINCT ns) AS no_promo
+RETURN with_promo, no_promo
+
+4) bestCustomers:
+
+For every member card type, find the customer who spent more money, in order to reward them in future context:
+
+MATCH (c:Customer)<-[:PURCHASED_BY]-(s:Sale)-[l:LINE_ITEM]->(p:Product)
+WITH c.fullname AS name, c.member_card AS card, sum(l.price*l.quantity)/10000 AS rank
+ORDER BY card, rank DESC
+WITH card, collect([rank, name]) AS ranking
+RETURN card, ranking[0][1] AS winner, ranking[0][0] AS rank
+
+5) howManyCustomers:
+
+Find how many customers each type of store has
+
+MATCH (c:Customer)<-[:PURCHASED_BY]-(sa:Sale)-[:IN_STORE]->(s:Store)-[:OF_TYPE]->(st:StoreType)
+WITH st.name AS name, COUNT(DISTINCT c) AS customers
+ORDER BY customers
+RETURN name, customers

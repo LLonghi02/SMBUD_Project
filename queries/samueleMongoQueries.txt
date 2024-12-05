@@ -1,0 +1,222 @@
+1) Satisfaction:
+
+Compute the Satisfaction index (average of each Job Satisfaction) for each job, than rank them
+
+SMBUD_project.Carrer.aggregate([
+  {
+    $group: {
+      _id: "$Current Occupation",
+      Satisfaction: {
+        $avg: "$Job Satisfaction"
+      }
+    }
+  },
+  {
+    $match: {
+      _id: {
+        $ne: null
+      }
+    }
+  },
+  {
+    $project: {
+      Occupation: "$_id",
+      _id: 0,
+      Satisfaction: 1
+    }
+  },
+  {
+    $sort: {
+      Satisfaction: -1
+    }
+  }
+])
+
+2)  sameDegreeOccupation:
+
+Find how many people are currently working in the same field they have a degree in:
+
+SMBUD_project.Carrer.aggregate([
+  {
+    $match: {
+      $or: [
+        {
+          $and: [
+            {
+              "Field of Study": "Psychology"
+            },
+            {
+              "Current Occupation": "Psychologist"
+            }
+          ]
+        },
+        {
+          $and: [
+            {
+              "Field of Study": "Medicine"
+            },
+            {
+              "Current Occupation": "Doctor"
+            }
+          ]
+        },
+        {
+          $and: [
+            {
+              "Field of Study": "Education"
+            },
+            {
+              "Current Occupation": "Teacher"
+            }
+          ]
+        },
+        {
+          $and: [
+            {
+              "Field of Study": "Arts"
+            },
+            {
+              "Current Occupation": "Artist"
+            }
+          ]
+        },
+        {
+          $and: [
+            {
+              "Field of Study": "Computer Science"
+            },
+            {
+              "Current Occupation":
+                "Software Developer"
+            }
+          ]
+        },
+        {
+          $and: [
+            {
+              "Field of Study": "Business"
+            },
+            {
+              "Current Occupation":
+                "Business Analyst"
+            }
+          ]
+        },
+        {
+          $and: [
+            {
+              "Field of Study":
+                "Mechanical Engineering"
+            },
+            {
+              "Current Occupation":
+                "Mechanical Engineer"
+            }
+          ]
+        },
+        {
+          $and: [
+            {
+              "Field of Study": "Biology"
+            },
+            {
+              "Current Occupation": "Biologist"
+            }
+          ]
+        },
+        {
+          $and: [
+            {
+              "Field of Study": "Law"
+            },
+            {
+              "Current Occupation": "Lawyer"
+            }
+          ]
+        },
+        {
+          $and: [
+            {
+              "Field of Study": "Economics"
+            },
+            {
+              "Current Occupation": "Economist"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    $group: {
+      _id: {
+        Field: "$Field of Study",
+        Occupation: "$Current Occupation"
+      },
+      tot: {
+        $sum: 1
+      }
+    }
+  },
+  {
+    $project: {
+      Field: "$_id.Field",
+      Occupation: "$_id.Occupation",
+      tot: 1,
+      _id: 0
+    }
+  }
+])
+
+3) changeOccupation:
+
+For each job, find how many people would like to change carrer path and how many would not:
+
+SMBUD_project.Carrer.aggregate([
+  {
+    $group: {
+      _id: "$Current Occupation",
+      change: {
+        $sum: {
+          $cond: [
+            {
+              $eq: [
+                "$Likely to Change Occupation",
+                1
+              ]
+            },
+            1,
+            0
+          ]
+        }
+      },
+      not_change: {
+        $sum: {
+          $cond: [
+            {
+              $eq: [
+                "$Likely to Change Occupation",
+                0
+              ]
+            },
+            1,
+            0
+          ]
+        }
+      }
+    }
+  },
+  {
+    $project:
+      /**
+       * specifications: The fields to
+       *   include or exclude.
+       */
+      {
+        Occupation: "$_id",
+        _id: 0,
+        change: 1,
+        not_change: 1
+      }
+  }
+])
