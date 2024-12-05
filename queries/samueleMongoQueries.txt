@@ -208,15 +208,169 @@ SMBUD_project.Carrer.aggregate([
   },
   {
     $project:
-      /**
-       * specifications: The fields to
-       *   include or exclude.
-       */
+
       {
         Occupation: "$_id",
         _id: 0,
         change: 1,
         not_change: 1
       }
+  }
+])
+
+4) Education vs. Salary Analysis
+Find which education level have a better average salary
+
+SMBUD_project.Carrer.aggregate([
+  {
+    $group: {
+      _id: "$Education Level",
+      averageSalary: {
+        $avg: "$Salary"
+      }
+    }
+  },
+  {
+    $match: {
+      _id: {
+        $ne: null
+      }
+    }
+  },
+  {
+    $project: {
+      educationLevel: "$_id",
+      _id: 0,
+      averageSalary: 1
+    }
+  },
+  {
+    $sort: {
+      averageSalary: -1
+    }
+  }
+])
+
+5) Gender Distribution Analysis
+This query calculates the percentage distribution of genders within each field of study, providing insights into gender representation across disciplines.
+
+SMBUD_project.Carrer.aggregate([
+  {
+    $group: {
+      _id: {
+        fieldOfStudy: "$Field of Study",
+        gender: "$Gender"
+      },
+      count: {
+        $sum: 1
+      }
+    }
+  },
+  {
+    $group: {
+      _id: "$_id.fieldOfStudy",
+      total: {
+        $sum: "$count"
+      },
+      genders: {
+        $push: {
+          gender: "$_id.gender",
+          count: "$count"
+        }
+      }
+    }
+  },
+  {
+    $match: {
+      _id: {
+        $ne: null
+      }
+    }
+  },
+  {
+    $project: {
+      fieldOfStudy: "$_id",
+      _id: 0,
+      genderPercentages: {
+        $map: {
+          input: "$genders",
+          as: "gender",
+          in: {
+            gender: "$$gender.gender",
+            percentage: {
+              $multiply: [
+                {
+                  $divide: [
+                    "$$gender.count",
+                    "$total"
+                  ]
+                },
+                100
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+])
+
+6) Relation between experience and job opportunities
+
+Analyse the relationship between years of experience and job opportunities, ranking them by highest average opportunity 
+
+SMBUD_project.Carrer.aggregate([
+  {
+    $group: {
+      _id: {
+        yearsOfExperience: "$Years of Experience"
+      },
+      avgJobOpportunities: {
+        $avg: "$Job Opportunities"
+      }
+    }
+  },
+  {
+    $project: {
+      yearsOfExperience: "$_id.yearsOfExperience",
+      avgJobOpportunities: 1,
+      _id: 0
+    }
+  },
+  {
+    $sort: {
+      avgJobOpportunities: -1
+    }
+  }
+])
+
+7) Total Certifications by Field of Study and Education Level
+
+Calculates the total number of certifications within each field of study and education level
+
+SMBUD_project.Carrer.aggregate([
+  {
+    $group: {
+      _id: {
+        fieldOfStudy: "$Field of Study",
+        educationLevel: "$Education Level"
+      },
+      totalCertifications: {
+        $sum: "$Certifications"
+      }
+    }
+  },
+  {
+    $project: {
+      fieldOfStudy: "$_id.fieldOfStudy",
+      educationLevel: "$_id.educationLevel",
+      totalCertifications: 1,
+      _id: 0
+    }
+  },
+  {
+    $sort: {
+      totalCertifications: -1
+    }
   }
 ])
