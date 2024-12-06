@@ -1,15 +1,14 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_smbud/importer.dart'; // Assicurati che AppFonts, TopBar, BottomBar siano correttamente definiti
 
-class QN1 extends ConsumerStatefulWidget {
-  const QN1({super.key});
+import 'package:flutter_smbud/importer.dart'; 
+
+class QN2 extends ConsumerStatefulWidget {
+  const QN2({super.key});
 
   @override
-  ConsumerState<QN1> createState() => _QN1State();
+  ConsumerState<QN2> createState() => _QN2State();
 }
 
-class _QN1State extends ConsumerState<QN1> {
+class _QN2State extends ConsumerState<QN2> {
   @override
   Widget build(BuildContext context) {
     // Usa il WidgetRef per accedere ai provider
@@ -31,7 +30,7 @@ class _QN1State extends ConsumerState<QN1> {
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 16.0),
               child: Text(
-                'Selling Hubs',
+                'Unforgettable day',
                 style: AppFonts
                     .textBold, // Assicurati che AppFonts.textBold sia definito
                 textAlign: TextAlign.center,
@@ -42,7 +41,7 @@ class _QN1State extends ConsumerState<QN1> {
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 16.0),
               child: Text(
-                'Retrieve the cities with most sold units from their stores.Useful to track where to deliver most of items, and detect potential warehouses position',
+                'Retrieve the most profitable day for each store',
                 style: AppFonts
                     .textQ, // Assicurati che AppFonts.textRegular sia definito
                 textAlign: TextAlign.center,
@@ -50,14 +49,14 @@ class _QN1State extends ConsumerState<QN1> {
             ),
             const SizedBox(height: 10), // Spaziatura tra i componenti.
 
-            const QueryTextWidget(),
+            const QueryTextWidget2(),
 
             Center(
               child: SizedBox(
-                width: screenWidth * 0.98,
-                height: 200,
+                width: screenWidth * 0.99,
+                height: 300,
                 child: Image.asset(
-                  'assets/images/QN/QN1.png', // Percorso dell'immagine
+                  'assets/images/QN/QN2.png', // Percorso dell'immagine
                   fit: BoxFit
                       .contain, // Usa BoxFit.contain per evitare che l'immagine venga tagliata
                 ),
@@ -72,33 +71,36 @@ class _QN1State extends ConsumerState<QN1> {
   }
 }
 
-class QueryTextWidget extends StatelessWidget {
-  const QueryTextWidget({super.key});
+class QueryTextWidget2 extends StatelessWidget {
+  const QueryTextWidget2({super.key});
 
   @override
-  Widget build(BuildContext context) {
+   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10.0),
+      padding: const EdgeInsets.symmetric(horizontal: 16.0),
       child: Text.rich(
         TextSpan(
           children: [
             _buildTextSpan('MATCH', true),
-            _buildTextSpan(
-                ' ( store : Store ) - [: IN_CITY ] - ( citta : City )\n'),
+            _buildTextSpan(' ( store : Store ) - [: IN_STORE ] - (s: Sale ) -[ purchase : LINE_ITEM ] - (: Product )\n'),
             _buildTextSpan('WITH', true),
-            _buildTextSpan(' citta\n'),
+            _buildTextSpan(' store , s , SUM( toFloat ( purchase . price - purchase . cost_price ) /10000 * purchase . quantity ) AS total_sale_profit\n'),
+            _buildTextSpan('WITH', true),
+            _buildTextSpan(' store , s, round ( total_sale_profit * 100) / 100 AS rounded_total_sale_profit\n'),
             _buildTextSpan('MATCH', true),
-            _buildTextSpan(
-                ' ( citta : City ) - [ : IN_CITY ] - (: Store ) - [: IN_STORE ] - (s: Sale ) -[ purchase : LINE_ITEM ] - (: Product )\n'),
+            _buildTextSpan(' (s: Sale ) - [: ON_DATE ] - (day: Date )\n'),
             _buildTextSpan('WITH', true),
-            _buildTextSpan(
-                ' citta , s , SUM( toInteger ( purchase . quantity ) ) AS total_units\n'),
+            _buildTextSpan(' store , day , SUM( rounded_total_sale_profit ) AS total_profit_day\n'),
             _buildTextSpan('WITH', true),
-            _buildTextSpan(' citta , SUM( total_units ) AS unit_per_city\n'),
-            _buildTextSpan('RETURN', true),
-            _buildTextSpan(' citta , unit_per_city\n'),
+            _buildTextSpan(' store , day , round ( total_profit_day * 100) / 100 AS rounded_total_profit_day\n'),
             _buildTextSpan('ORDER BY', true),
-            _buildTextSpan(' unit_per_city DESC\n'),
+            _buildTextSpan(' rounded_total_profit_day DESC\n'),
+            _buildTextSpan('WITH', true),
+            _buildTextSpan(' store , collect ({ day: day , total : rounded_total_profit_day })[0] AS top_day_profit\n'),
+            _buildTextSpan('RETURN', true),
+            _buildTextSpan(' store .name , top_day_profit .day. date AS day , top_day_profit .total AS max_total_per_day\n'),
+            _buildTextSpan('ORDER BY', true),
+            _buildTextSpan(' store ASC\n'),
           ],
         ),
         textAlign: TextAlign.left,

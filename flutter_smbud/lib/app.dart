@@ -17,7 +17,7 @@ class App extends ConsumerWidget {
           centerTitle: true,
         ),
       ),
-      home:     const Schermata(),
+      home:     const Neo4j(),
     );
   }
 }

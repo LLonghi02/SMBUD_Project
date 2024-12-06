@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_smbud/importer.dart'; // Assicurati che AppFonts, TopBar, BottomBar siano correttamente definiti
 
-class QN1 extends ConsumerStatefulWidget {
-  const QN1({super.key});
+class QN4 extends ConsumerStatefulWidget {
+  const QN4({super.key});
 
   @override
-  ConsumerState<QN1> createState() => _QN1State();
+  ConsumerState<QN4> createState() => _QN4State();
 }
 
-class _QN1State extends ConsumerState<QN1> {
+class _QN4State extends ConsumerState<QN4> {
   @override
   Widget build(BuildContext context) {
     // Usa il WidgetRef per accedere ai provider
@@ -31,7 +31,7 @@ class _QN1State extends ConsumerState<QN1> {
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 16.0),
               child: Text(
-                'Selling Hubs',
+                'Have you drank enough today?',
                 style: AppFonts
                     .textBold, // Assicurati che AppFonts.textBold sia definito
                 textAlign: TextAlign.center,
@@ -42,7 +42,7 @@ class _QN1State extends ConsumerState<QN1> {
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 16.0),
               child: Text(
-                'Retrieve the cities with most sold units from their stores.Useful to track where to deliver most of items, and detect potential warehouses position',
+                'Trend of Beers sold over time at USA’s stores, useful to spot trendings and eventually to manage the pricing',
                 style: AppFonts
                     .textQ, // Assicurati che AppFonts.textRegular sia definito
                 textAlign: TextAlign.center,
@@ -50,14 +50,14 @@ class _QN1State extends ConsumerState<QN1> {
             ),
             const SizedBox(height: 10), // Spaziatura tra i componenti.
 
-            const QueryTextWidget(),
+            const QueryTextWidget4(),
 
             Center(
               child: SizedBox(
                 width: screenWidth * 0.98,
                 height: 200,
                 child: Image.asset(
-                  'assets/images/QN/QN1.png', // Percorso dell'immagine
+                  'assets/images/QN/QN4.png', // Percorso dell'immagine
                   fit: BoxFit
                       .contain, // Usa BoxFit.contain per evitare che l'immagine venga tagliata
                 ),
@@ -72,33 +72,26 @@ class _QN1State extends ConsumerState<QN1> {
   }
 }
 
-class QueryTextWidget extends StatelessWidget {
-  const QueryTextWidget({super.key});
+class QueryTextWidget4 extends StatelessWidget {
+  const QueryTextWidget4({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10.0),
       child: Text.rich(
-        TextSpan(
+ TextSpan(
           children: [
             _buildTextSpan('MATCH', true),
-            _buildTextSpan(
-                ' ( store : Store ) - [: IN_CITY ] - ( citta : City )\n'),
+            _buildTextSpan(' ( store : Store { country : "USA" }) - [: IN_STORE ] - ( s : Sale ) - [ sell : LINE_ITEM ] -( beer : Product ) - [: IN_CATEGORY ] - ( beer_cat : ProductSubCategory { name :" Beer "}) ,\n'),
             _buildTextSpan('WITH', true),
-            _buildTextSpan(' citta\n'),
-            _buildTextSpan('MATCH', true),
-            _buildTextSpan(
-                ' ( citta : City ) - [ : IN_CITY ] - (: Store ) - [: IN_STORE ] - (s: Sale ) -[ purchase : LINE_ITEM ] - (: Product )\n'),
+            _buildTextSpan(' beer , day , SUM( sell . quantity ) as sold_beers\n'),
             _buildTextSpan('WITH', true),
-            _buildTextSpan(
-                ' citta , s , SUM( toInteger ( purchase . quantity ) ) AS total_units\n'),
-            _buildTextSpan('WITH', true),
-            _buildTextSpan(' citta , SUM( total_units ) AS unit_per_city\n'),
+            _buildTextSpan(' day , SUM ( sold_beers ) as total_sold_beers\n'),
             _buildTextSpan('RETURN', true),
-            _buildTextSpan(' citta , unit_per_city\n'),
+            _buildTextSpan(' day. date AS date , day . day_of_week , total_sold_beers\n'),
             _buildTextSpan('ORDER BY', true),
-            _buildTextSpan(' unit_per_city DESC\n'),
+            _buildTextSpan(' day. day ASC\n'),
           ],
         ),
         textAlign: TextAlign.left,

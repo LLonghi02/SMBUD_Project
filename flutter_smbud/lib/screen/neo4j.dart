@@ -96,20 +96,137 @@ class Neo4j extends ConsumerWidget {
               ),
             ),
                         const SizedBox(height: 13), // Spaziatura tra i componenti.
-
-            TextWithButtonCard(
-              text: 'Study customer behavior based on past purchases.',
+                         TextWithButtonCard(
+              text: 'Selling hubs',
               buttonColor: buttonColor,
               onPressed: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => QN1(),
+                    builder: (context) => const QN1(),
                   ),
                 );
               },
             ),
             const SizedBox(height: 13),
+
+            TextWithButtonCard(
+              text: 'Unforgettable day',
+              buttonColor: buttonColor,
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const QN2(),
+                  ),
+                );
+              },
+            ),
+            const SizedBox(height: 13),
+            TextWithButtonCard(
+              text: 'What’s popular in Acapulco?',
+              buttonColor: buttonColor,
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const QN3(),
+                  ),
+                );
+              },
+            ),
+            const SizedBox(height: 13),
+            TextWithButtonCard(
+              text: 'Have you drank enough today?',
+              buttonColor: buttonColor,
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const QN4(),
+                  ),
+                );
+              },
+            ),
+            const SizedBox(height: 13),
+            TextWithButtonCard(
+              text: 'Best clients',
+              buttonColor: buttonColor,
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const QN5(),
+                  ),
+                );
+              },
+            ),/*
+            const SizedBox(height: 13),
+            TextWithButtonCard(
+              text: 'Selling Hubs',
+              buttonColor: buttonColor,
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const QN6(),
+                  ),
+                );
+              },
+            ),
+            const SizedBox(height: 13),
+            TextWithButtonCard(
+              text: 'Selling Hubs',
+              buttonColor: buttonColor,
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const QN7(),
+                  ),
+                );
+              },
+            ),
+            const SizedBox(height: 13),
+            TextWithButtonCard(
+              text: 'Selling Hubs',
+              buttonColor: buttonColor,
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const QN8(),
+                  ),
+                );
+              },
+            ),
+            const SizedBox(height: 13),
+            TextWithButtonCard(
+              text: 'Selling Hubs',
+              buttonColor: buttonColor,
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const QN9(),
+                  ),
+                );
+              },
+            ),
+            const SizedBox(height: 13),
+            TextWithButtonCard(
+              text: 'Selling Hubs',
+              buttonColor: buttonColor,
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const QN10(),
+                  ),
+                );
+              },
+            ),*/
+           
           ],
         ),
       ),

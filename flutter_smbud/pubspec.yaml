@@ -31,7 +31,11 @@ flutter:
     - assets/images/food.jpg
     - assets/images/mongo.png
     - assets/images/neo.png
-    - assets/images/book.jpg
-    - assets/images/dataset/bookDS.png
-    - assets/images/dataset/ratDS.png
-    - assets/images/dataset/userDS.png
+    - assets/images/work.png
+    - assets/images/dataset/carrer.png
+    - assets/images/QN/QN1.png
+    - assets/images/QN/QN2.png
+    - assets/images/QN/QN3.png
+    - assets/images/QN/QN4.png
+    - assets/images/QN/QN5.png
+

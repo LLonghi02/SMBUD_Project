@@ -6,6 +6,11 @@ export 'package:flutter_smbud/screen/schermata.dart';
 export 'package:flutter_smbud/screen/neo4j.dart';
 export 'package:flutter_smbud/screen/dataset_carrer.dart';
 export 'package:flutter_smbud/screen/QNeo4j/QN1.dart';
+export 'package:flutter_smbud/screen/QNeo4j/QN2.dart';
+export 'package:flutter_smbud/screen/QNeo4j/QN3.dart';
+export 'package:flutter_smbud/screen/QNeo4j/QN4.dart';
+export 'package:flutter_smbud/screen/QNeo4j/QN5.dart';
+
 
 export 'package:flutter_smbud/provider/theme.dart';
 

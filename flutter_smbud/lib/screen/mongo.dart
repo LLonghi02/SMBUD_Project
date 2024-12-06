@@ -46,14 +46,15 @@ class Mongo extends ConsumerWidget {
             ),
             const SizedBox(height: 16), // Spaziatura tra i componenti.
             // Testo sotto l'immagine.
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16.0),
-              child: Text(
-                'Analyzing a dataset in MongoDB that contains information about Users, Ratings, and Books provides a unique opportunity to gain meaningful insights into user behavior, reading preferences, and book popularity. ',
-                style: AppFonts.text,
-                textAlign: TextAlign.center,
-              ),
-            ),
+           const Padding(
+  padding: EdgeInsets.symmetric(horizontal: 16.0),
+  child: Text(
+    "This dataset contains detailed information about individuals' professional and educational profiles, providing insights into various factors that influence their careers, preferences, and opportunities. Each field captures a specific aspect of an individual’s professional journey, ranging from academic background to career satisfaction, allowing for comprehensive analysis of workforce trends and behaviors.",
+    style: AppFonts.text,
+    textAlign: TextAlign.center,
+  ),
+),
+
             const SizedBox(height: 13), // Spaziatura tra i componenti.
             // Pulsante largo tutto lo schermo.
             Padding(
@@ -66,7 +67,7 @@ class Mongo extends ConsumerWidget {
                     // Navigazione verso un'altra pagina o altra azione.
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) =>  DSCarrer()),
+                      MaterialPageRoute(builder: (context) =>  const DSCarrer()),
                     );
                   },
                   style: ElevatedButton.styleFrom(

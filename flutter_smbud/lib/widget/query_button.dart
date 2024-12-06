@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_smbud/importer.dart';
 
 class TextWithButtonCard extends StatelessWidget {
@@ -49,7 +48,7 @@ class TextWithButtonCard extends StatelessWidget {
                   borderRadius: BorderRadius.circular(12),
                 ),
               ),
-              child: const Text('Esegui'),
+              child: const Text('Execute'),
             ),
           ],
         ),
