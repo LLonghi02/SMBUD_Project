@@ -29,9 +29,9 @@ class AppFonts {
     height: 1.5,
   );
   static const TextStyle textBold = TextStyle(
+    fontFamily: 'MyFont',
     fontSize: 20,
     fontWeight: FontWeight.bold,
-    fontStyle: FontStyle.italic, 
     height: 1.5,
   );
 }

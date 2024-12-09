@@ -1,4 +1,5 @@
 import 'package:flutter_smbud/importer.dart';
+import 'package:flutter_smbud/screen/dataset_foodmart.dart';
 
 void main() {
   runApp(const ProviderScope(child: MyApp()));
@@ -63,11 +64,10 @@ class Neo4j extends ConsumerWidget {
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () {
-                    // Navigazione verso un'altra pagina o altra azione.
-                    /*Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => const SecondPage()),
-        );*/
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const DSFood()),
+                    );
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor:
@@ -95,8 +95,8 @@ class Neo4j extends ConsumerWidget {
                 textAlign: TextAlign.center,
               ),
             ),
-                        const SizedBox(height: 13), // Spaziatura tra i componenti.
-                         TextWithButtonCard(
+            const SizedBox(height: 13), // Spaziatura tra i componenti.
+            TextWithButtonCard(
               text: 'Selling hubs',
               buttonColor: buttonColor,
               onPressed: () {
@@ -160,7 +160,7 @@ class Neo4j extends ConsumerWidget {
                   ),
                 );
               },
-            ),/*
+            ), /*
             const SizedBox(height: 13),
             TextWithButtonCard(
               text: 'Selling Hubs',
@@ -226,7 +226,6 @@ class Neo4j extends ConsumerWidget {
                 );
               },
             ),*/
-           
           ],
         ),
       ),

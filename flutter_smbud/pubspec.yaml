@@ -33,9 +33,15 @@ flutter:
     - assets/images/neo.png
     - assets/images/work.png
     - assets/images/dataset/carrer.png
+    - assets/images/dataset/food.png
+    - assets/images/dataset/es_node.png
     - assets/images/QN/QN1.png
     - assets/images/QN/QN2.png
     - assets/images/QN/QN3.png
     - assets/images/QN/QN4.png
     - assets/images/QN/QN5.png
 
+  fonts:
+      - family: MyFont
+        fonts:
+          - asset: assets/fonts/chinese.msyh.ttf
