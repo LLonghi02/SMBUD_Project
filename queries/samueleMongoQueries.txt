@@ -31,7 +31,7 @@ SMBUD_project.Carrer.aggregate([
     }
   }
 ])
-
+--------------------------------------------------------------------------------------
 2)  sameDegreeOccupation:
 
 Find how many people are currently working in the same field they have a degree in:
@@ -167,7 +167,7 @@ SMBUD_project.Carrer.aggregate([
     }
   }
 ])
-
+---------------------------------------------------------------------------
 3) changeOccupation:
 
 For each job, find how many people would like to change carrer path and how many would not:
@@ -217,7 +217,7 @@ SMBUD_project.Carrer.aggregate([
       }
   }
 ])
-
+--------------------------------------------------------------------
 4) Education vs. Salary Analysis
 Find which education level have a better average salary
 
@@ -250,7 +250,7 @@ SMBUD_project.Carrer.aggregate([
     }
   }
 ])
-
+------------------------------------------------------------------------------
 5) Gender Distribution Analysis
 This query calculates the percentage distribution of genders within each field of study, providing insights into gender representation across disciplines.
 
@@ -314,7 +314,7 @@ SMBUD_project.Carrer.aggregate([
     }
   }
 ])
-
+-------------------------------------------------------------------
 6) Relation between experience and job opportunities
 
 Analyse the relationship between years of experience and job opportunities, ranking them by highest average opportunity 
@@ -343,7 +343,7 @@ SMBUD_project.Carrer.aggregate([
     }
   }
 ])
-
+------------------------------------------------------------------
 7) Total Certifications by Field of Study and Education Level
 
 Calculates the total number of certifications within each field of study and education level
@@ -374,3 +374,170 @@ SMBUD_project.Carrer.aggregate([
     }
   }
 ])
+--------------------------------------------------------------
+8) Skill gap by field of study
+This query calculates the mean skill gap of the employee by their study fields and also, for each field of study
+tracks the case where the 
+SMBUD_project.Carrer.aggregate([
+  {
+    $group: {
+      _id: "$Field of Study", 
+      averageSkillGap: { $avg: "$Skills Gap" }, 
+      documents: {
+        $push: {
+          docId : "$_id", 
+          skillsGap: "$Skills Gap", 
+          currentOccupation: "$Current Occupation",
+          age: "$Age", 
+          salary: "$Salary" 
+        }
+      }
+    }
+  },
+
+  {
+    $project: {
+      fieldOfStudy: "$_id", 
+      _id: 0, 
+      averageSkillGap: 1,
+      
+      documents: {
+        $filter: {
+          input: "$documents",
+          as: "doc",
+          cond: { $gte: ["$$doc.skillsGap", 5] }
+        }
+      },
+      // same as before, just counting
+      howMany: {
+        $size: {
+          $filter: {
+            input: "$documents", 
+            as: "doc", 
+            cond: { $gte: ["$$doc.skillsGap", 5] } 
+          }
+        }
+      }
+      
+    }
+  }
+])
+-----------------------------------------
+9) Gender survey pt.2
+For each pair of position and education level, it calculates the distibution of men and women
+Query 9 
+
+SMBUD_project.Carrer.aggregate([
+  // Stage 1 group occupation,gender,educationLevel
+ {
+    $group: {
+      _id: {
+        occupation: "$Current Occupation",
+        gender: "$Gender",
+        educationLevel: "$Education Level"
+      },
+      count: { $sum: 1 }
+    }
+  },
+  // Stage 2: Explode and count female / males
+  {
+    $group: {
+      _id: {
+        occupation: "$_id.occupation",
+        educationLevel: "$_id.educationLevel"
+      },
+      countsByGender: {
+        $push: {
+          gender: "$_id.gender",
+          count: "$count"
+        }
+      }
+    }
+  },
+  // Stage 3: Pivot countsByGender into separate fields for men and women
+  {
+    $project: {
+      _id: 0, // Exclude default _id
+      occupation: "$_id.occupation",
+      educationLevel: "$_id.educationLevel",
+      
+      menCount: {
+        
+        $reduce: {
+          input: "$countsByGender",
+          initialValue: 0,
+          in: {
+            $cond: [
+              { $eq: ["$$this.gender", "Male"] }, // Check if gender is Male
+              { $add: ["$$value", "$$this.count"] }, // Add count to menCount
+              "$$value" // Keep the value as-is if not Male
+            ]
+          }
+        }
+      },
+      
+      womenCount: {
+        $reduce: {
+          input: "$countsByGender",
+          initialValue: 0,
+          in: {
+            $cond: [
+              { $eq: ["$$this.gender", "Female"] }, // Check if gender is Female
+              { $add: ["$$value", "$$this.count"] }, // Add count to womenCount
+              "$$value" // Keep the value as-is if not Female
+            ]
+          }
+        }
+      }
+    }
+  },
+   {
+    $sort: { occupation: 1 } // Sort by occupation in ascending order
+  }
+ ])
+
+
+
+---------------------------------------------------------------------------------------
+10) Carrer Salary trend
+it calculates the salary trend for each position by number of experience
+
+SMBUD_project.Carrer.aggregate([
+
+  // Stage 1: Group by occupation and years of experience
+  {
+    $group: {
+      _id: {
+        occupation: "$Current Occupation",    // Group by occupation
+        yearsOfExperience: "$Years of Experience" // Group by years of experience
+      },
+      avgSalary: { $avg: "$Salary" }  // Calculate the average salary for each group
+    }
+  },
+  // Stage 2: Sort by occupation and years of experience
+  {
+    $sort: {
+      "_id.occupation": 1,  // Sort by occupation alphabetically
+      "_id.yearsOfExperience": 1  // Sort by years of experience in ascending order
+    }
+  },
+  // Stage 3: Group by occupation and create an array of average salaries (progression)
+  {
+    $group: {
+      _id: "$_id.occupation", // Group by occupation
+      progression: {
+        $push: "$avgSalary"  // Include the average salary for each year of experience
+        
+      }
+    }
+  },
+  // Stage 4: Project the final result to match the desired format
+  {
+    $project: {
+      _id: 0, // Exclude the default _id field
+      occupation: "$_id", // Include the occupation field
+      progression: "$progression" // Include the progression array
+    }
+  }
+])
+
