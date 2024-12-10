@@ -10,6 +10,11 @@ export 'package:flutter_smbud/screen/QNeo4j/QN2.dart';
 export 'package:flutter_smbud/screen/QNeo4j/QN3.dart';
 export 'package:flutter_smbud/screen/QNeo4j/QN4.dart';
 export 'package:flutter_smbud/screen/QNeo4j/QN5.dart';
+export 'package:flutter_smbud/screen/QNeo4j/QN6.dart';
+export 'package:flutter_smbud/screen/QNeo4j/QN7.dart';
+export 'package:flutter_smbud/screen/QNeo4j/QN8.dart';
+export 'package:flutter_smbud/screen/QNeo4j/QN9.dart';
+export 'package:flutter_smbud/screen/QNeo4j/QN10.dart';
 
 
 export 'package:flutter_smbud/provider/theme.dart';

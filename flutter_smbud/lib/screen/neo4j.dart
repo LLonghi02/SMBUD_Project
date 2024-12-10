@@ -160,10 +160,10 @@ class Neo4j extends ConsumerWidget {
                   ),
                 );
               },
-            ), /*
+            ),
             const SizedBox(height: 13),
             TextWithButtonCard(
-              text: 'Selling Hubs',
+              text: 'Top Stores',
               buttonColor: buttonColor,
               onPressed: () {
                 Navigator.push(
@@ -176,7 +176,7 @@ class Neo4j extends ConsumerWidget {
             ),
             const SizedBox(height: 13),
             TextWithButtonCard(
-              text: 'Selling Hubs',
+              text: 'Cutting Time',
               buttonColor: buttonColor,
               onPressed: () {
                 Navigator.push(
@@ -189,7 +189,7 @@ class Neo4j extends ConsumerWidget {
             ),
             const SizedBox(height: 13),
             TextWithButtonCard(
-              text: 'Selling Hubs',
+              text: 'Promotions Effectiveness',
               buttonColor: buttonColor,
               onPressed: () {
                 Navigator.push(
@@ -202,7 +202,7 @@ class Neo4j extends ConsumerWidget {
             ),
             const SizedBox(height: 13),
             TextWithButtonCard(
-              text: 'Selling Hubs',
+              text: 'Best Customers',
               buttonColor: buttonColor,
               onPressed: () {
                 Navigator.push(
@@ -215,7 +215,7 @@ class Neo4j extends ConsumerWidget {
             ),
             const SizedBox(height: 13),
             TextWithButtonCard(
-              text: 'Selling Hubs',
+              text: 'How Many Customers',
               buttonColor: buttonColor,
               onPressed: () {
                 Navigator.push(
@@ -225,7 +225,8 @@ class Neo4j extends ConsumerWidget {
                   ),
                 );
               },
-            ),*/
+            ),
+            const SizedBox(height: 13),
           ],
         ),
       ),

@@ -40,6 +40,9 @@ flutter:
     - assets/images/QN/QN3.png
     - assets/images/QN/QN4.png
     - assets/images/QN/QN5.png
+    - assets/images/QN/QN6.png
+    - assets/images/QN/QN7.png
+
 
   fonts:
       - family: MyFont
