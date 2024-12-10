@@ -1,4 +1,5 @@
 import 'package:flutter_smbud/importer.dart';
+import 'package:flutter_smbud/screen/QMongo/QM1.dart';
 
 void main() {
   runApp(const ProviderScope(child: MyApp()));
@@ -46,14 +47,14 @@ class Mongo extends ConsumerWidget {
             ),
             const SizedBox(height: 16), // Spaziatura tra i componenti.
             // Testo sotto l'immagine.
-           const Padding(
-  padding: EdgeInsets.symmetric(horizontal: 16.0),
-  child: Text(
-    "This dataset contains detailed information about individuals' professional and educational profiles, providing insights into various factors that influence their careers, preferences, and opportunities. Each field captures a specific aspect of an individual’s professional journey, ranging from academic background to career satisfaction, allowing for comprehensive analysis of workforce trends and behaviors.",
-    style: AppFonts.text,
-    textAlign: TextAlign.center,
-  ),
-),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16.0),
+              child: Text(
+                "This dataset contains detailed information about individuals' professional and educational profiles, providing insights into various factors that influence their careers, preferences, and opportunities. Each field captures a specific aspect of an individual’s professional journey, ranging from academic background to career satisfaction, allowing for comprehensive analysis of workforce trends and behaviors.",
+                style: AppFonts.text,
+                textAlign: TextAlign.center,
+              ),
+            ),
 
             const SizedBox(height: 13), // Spaziatura tra i componenti.
             // Pulsante largo tutto lo schermo.
@@ -67,7 +68,7 @@ class Mongo extends ConsumerWidget {
                     // Navigazione verso un'altra pagina o altra azione.
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) =>  const DSCarrer()),
+                      MaterialPageRoute(builder: (context) => const DSCarrer()),
                     );
                   },
                   style: ElevatedButton.styleFrom(
@@ -91,12 +92,129 @@ class Mongo extends ConsumerWidget {
               text: 'Study customer behavior based on past purchases.',
               buttonColor: buttonColor,
               onPressed: () {
-                /* Navigator.push(
+                Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const AnotherPage(),
+                    builder: (context) => const QM1(),
                   ),
-                );*/
+                );
+              },
+            ),
+            const SizedBox(height: 13),
+            TextWithButtonCard(
+              text: 'Study customer behavior based on past purchases.',
+              buttonColor: buttonColor,
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const QM2(),
+                  ),
+                );
+              },
+            ),
+            const SizedBox(height: 13),
+            TextWithButtonCard(
+              text: 'Study customer behavior based on past purchases.',
+              buttonColor: buttonColor,
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const QM3(),
+                  ),
+                );
+              },
+            ),
+            const SizedBox(height: 13),
+            TextWithButtonCard(
+              text: 'Study customer behavior based on past purchases.',
+              buttonColor: buttonColor,
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const QM4(),
+                  ),
+                );
+              },
+            ),
+            const SizedBox(height: 13),
+            TextWithButtonCard(
+              text: 'Study customer behavior based on past purchases.',
+              buttonColor: buttonColor,
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const QM5(),
+                  ),
+                );
+              },
+            ),
+            const SizedBox(height: 13),
+            TextWithButtonCard(
+              text: 'Study customer behavior based on past purchases.',
+              buttonColor: buttonColor,
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const QM6(),
+                  ),
+                );
+              },
+            ),
+            const SizedBox(height: 13),
+            TextWithButtonCard(
+              text: 'Study customer behavior based on past purchases.',
+              buttonColor: buttonColor,
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const QM7(),
+                  ),
+                );
+              },
+            ),
+            const SizedBox(height: 13),
+            TextWithButtonCard(
+              text: 'Study customer behavior based on past purchases.',
+              buttonColor: buttonColor,
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const QM8(),
+                  ),
+                );
+              },
+            ),
+            const SizedBox(height: 13),
+            TextWithButtonCard(
+              text: 'Study customer behavior based on past purchases.',
+              buttonColor: buttonColor,
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const QM9(),
+                  ),
+                );
+              },
+            ),
+            const SizedBox(height: 13),
+            TextWithButtonCard(
+              text: 'Study customer behavior based on past purchases.',
+              buttonColor: buttonColor,
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const QM10(),
+                  ),
+                );
               },
             ),
             const SizedBox(height: 13),

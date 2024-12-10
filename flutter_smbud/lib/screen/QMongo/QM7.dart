@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_smbud/importer.dart'; // Assicurati che AppFonts, TopBar, BottomBar siano correttamente definiti
 
-class QM1 extends ConsumerStatefulWidget {
-  const QM1({super.key});
+class QM7 extends ConsumerStatefulWidget {
+  const QM7({super.key});
 
   @override
-  ConsumerState<QM1> createState() => _QM1State();
+  ConsumerState<QM7> createState() => _QM7State();
 }
 
-class _QM1State extends ConsumerState<QM1> {
+class _QM7State extends ConsumerState<QM7> {
   @override
   Widget build(BuildContext context) {
     // Usa il WidgetRef per accedere ai provider
@@ -50,14 +50,14 @@ class _QM1State extends ConsumerState<QM1> {
             ),
             const SizedBox(height: 10), // Spaziatura tra i componenti.
 
-            const QueryTWM1(),
+            const QueryTWM7(),
 
             Center(
               child: SizedBox(
                 width: screenWidth * 0.98,
                 height: 200,
                 child: Image.asset(
-                  'assets/images/QM/QM1.png', // Percorso dell'immagine
+                  'assets/images/QM/QM7.png', // Percorso dell'immagine
                   fit: BoxFit
                       .contain, // Usa BoxFit.contain per evitare che l'immagine venga tagliata
                 ),
@@ -72,8 +72,8 @@ class _QM1State extends ConsumerState<QM1> {
   }
 }
 
-class QueryTWM1 extends StatelessWidget {
-  const QueryTWM1({super.key});
+class QueryTWM7 extends StatelessWidget {
+  const QueryTWM7({super.key});
 
   @override
   Widget build(BuildContext context) {
