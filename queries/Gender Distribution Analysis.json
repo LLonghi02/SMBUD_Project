@@ -1,0 +1,130 @@
+[{
+  "fieldOfStudy": "Arts",
+  "genderPercentages": [
+    {
+      "gender": "Male",
+      "percentage": 50.571352644166886
+    },
+    {
+      "gender": "Female",
+      "percentage": 49.428647355833114
+    }
+  ]
+},
+{
+  "fieldOfStudy": "Business",
+  "genderPercentages": [
+    {
+      "gender": "Male",
+      "percentage": 50.17857142857143
+    },
+    {
+      "gender": "Female",
+      "percentage": 49.82142857142857
+    }
+  ]
+},
+{
+  "fieldOfStudy": "Mechanical Engineering",
+  "genderPercentages": [
+    {
+      "gender": "Male",
+      "percentage": 50.59370160041301
+    },
+    {
+      "gender": "Female",
+      "percentage": 49.40629839958699
+    }
+  ]
+},
+{
+  "fieldOfStudy": "Psychology",
+  "genderPercentages": [
+    {
+      "gender": "Male",
+      "percentage": 50.56787452677123
+    },
+    {
+      "gender": "Female",
+      "percentage": 49.43212547322877
+    }
+  ]
+},
+{
+  "fieldOfStudy": "Computer Science",
+  "genderPercentages": [
+    {
+      "gender": "Male",
+      "percentage": 48.87611082070047
+    },
+    {
+      "gender": "Female",
+      "percentage": 51.12388917929953
+    }
+  ]
+},
+{
+  "fieldOfStudy": "Biology",
+  "genderPercentages": [
+    {
+      "gender": "Male",
+      "percentage": 49.85972966080082
+    },
+    {
+      "gender": "Female",
+      "percentage": 50.14027033919919
+    }
+  ]
+},
+{
+  "fieldOfStudy": "Education",
+  "genderPercentages": [
+    {
+      "gender": "Male",
+      "percentage": 48.921971252566735
+    },
+    {
+      "gender": "Female",
+      "percentage": 51.078028747433265
+    }
+  ]
+},
+{
+  "fieldOfStudy": "Medicine",
+  "genderPercentages": [
+    {
+      "gender": "Female",
+      "percentage": 50.797670296277545
+    },
+    {
+      "gender": "Male",
+      "percentage": 49.20232970372246
+    }
+  ]
+},
+{
+  "fieldOfStudy": "Law",
+  "genderPercentages": [
+    {
+      "gender": "Male",
+      "percentage": 49.61038961038961
+    },
+    {
+      "gender": "Female",
+      "percentage": 50.38961038961038
+    }
+  ]
+},
+{
+  "fieldOfStudy": "Economics",
+  "genderPercentages": [
+    {
+      "gender": "Female",
+      "percentage": 50.3339567192092
+    },
+    {
+      "gender": "Male",
+      "percentage": 49.66604328079081
+    }
+  ]
+}]
