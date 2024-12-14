@@ -89,7 +89,7 @@ class Mongo extends ConsumerWidget {
             const SizedBox(height: 13), // Spaziatura tra i componenti.
 
             TextWithButtonCard(
-              text: 'Study customer behavior based on past purchases.',
+              text: 'Satisfaction',
               buttonColor: buttonColor,
               onPressed: () {
                 Navigator.push(
@@ -102,7 +102,7 @@ class Mongo extends ConsumerWidget {
             ),
             const SizedBox(height: 13),
             TextWithButtonCard(
-              text: 'Study customer behavior based on past purchases.',
+              text: 'Same Degree Occupation',
               buttonColor: buttonColor,
               onPressed: () {
                 Navigator.push(
@@ -115,7 +115,7 @@ class Mongo extends ConsumerWidget {
             ),
             const SizedBox(height: 13),
             TextWithButtonCard(
-              text: 'Study customer behavior based on past purchases.',
+              text: 'Change Occupation',
               buttonColor: buttonColor,
               onPressed: () {
                 Navigator.push(
@@ -128,7 +128,7 @@ class Mongo extends ConsumerWidget {
             ),
             const SizedBox(height: 13),
             TextWithButtonCard(
-              text: 'Study customer behavior based on past purchases.',
+              text: 'Education vs. Salary Analysis',
               buttonColor: buttonColor,
               onPressed: () {
                 Navigator.push(
@@ -141,7 +141,7 @@ class Mongo extends ConsumerWidget {
             ),
             const SizedBox(height: 13),
             TextWithButtonCard(
-              text: 'Study customer behavior based on past purchases.',
+              text: 'Gender Distribution Analysis',
               buttonColor: buttonColor,
               onPressed: () {
                 Navigator.push(
@@ -154,7 +154,7 @@ class Mongo extends ConsumerWidget {
             ),
             const SizedBox(height: 13),
             TextWithButtonCard(
-              text: 'Study customer behavior based on past purchases.',
+              text: 'Relation between experience and job opportunities',
               buttonColor: buttonColor,
               onPressed: () {
                 Navigator.push(
@@ -167,7 +167,7 @@ class Mongo extends ConsumerWidget {
             ),
             const SizedBox(height: 13),
             TextWithButtonCard(
-              text: 'Study customer behavior based on past purchases.',
+              text: 'Total Certifications Analysis',
               buttonColor: buttonColor,
               onPressed: () {
                 Navigator.push(
@@ -180,7 +180,7 @@ class Mongo extends ConsumerWidget {
             ),
             const SizedBox(height: 13),
             TextWithButtonCard(
-              text: 'Study customer behavior based on past purchases.',
+              text: 'Skill gap Analysis',
               buttonColor: buttonColor,
               onPressed: () {
                 Navigator.push(
@@ -193,7 +193,7 @@ class Mongo extends ConsumerWidget {
             ),
             const SizedBox(height: 13),
             TextWithButtonCard(
-              text: 'Study customer behavior based on past purchases.',
+              text: 'Gender distribution Analysis pt.2',
               buttonColor: buttonColor,
               onPressed: () {
                 Navigator.push(
@@ -206,7 +206,7 @@ class Mongo extends ConsumerWidget {
             ),
             const SizedBox(height: 13),
             TextWithButtonCard(
-              text: 'Study customer behavior based on past purchases.',
+              text: 'Carrer Salary trend',
               buttonColor: buttonColor,
               onPressed: () {
                 Navigator.push(

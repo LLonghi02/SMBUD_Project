@@ -55,7 +55,7 @@ class _QN8State extends ConsumerState<QN8> {
             Center(
               child: SizedBox(
                 width: screenWidth * 0.98,
-                height: 150,
+                height: 40,
                 child: Image.asset(
                   'assets/images/QN/QN8.png', // Percorso dell'immagine
                   fit: BoxFit

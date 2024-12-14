@@ -34,4 +34,12 @@ class AppFonts {
     fontWeight: FontWeight.bold,
     height: 1.5,
   );
+   static const TextStyle textBold2 = TextStyle(
+    fontFamily: 'MyFont',
+    fontSize: 20,
+    color: Color(0xff193526),
+    decoration: TextDecoration.underline,
+    fontWeight: FontWeight.bold,
+    height: 1.5,
+  );
 }

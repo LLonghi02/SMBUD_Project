@@ -21,17 +21,17 @@ class _QM1State extends ConsumerState<QM4> {
       appBar: const TopBar(
         title: 'MongoDB',
       ),
-      body: SingleChildScrollView(
+      body: const SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const SizedBox(height: 18), // Spaziatura tra i componenti.
+            SizedBox(height: 18), // Spaziatura tra i componenti.
 
             // Titolo
-            const Padding(
+            Padding(
               padding: EdgeInsets.symmetric(horizontal: 16.0),
               child: Text(
-                'Selling Hubs',
+                'Education vs. Salary Analysis',
                 style: AppFonts
                     .textBold, // Assicurati che AppFonts.textBold sia definito
                 textAlign: TextAlign.center,
@@ -39,35 +39,86 @@ class _QM1State extends ConsumerState<QM4> {
             ),
 
             // Descrizione del titolo
-            const Padding(
+            Padding(
               padding: EdgeInsets.symmetric(horizontal: 16.0),
               child: Text(
-                'Retrieve the cities with most sold units from their stores.Useful to track where to deliver most of items, and detect potential warehouses position',
+                'Find which education level have a better average salary',
                 style: AppFonts
                     .textQ, // Assicurati che AppFonts.textRegular sia definito
                 textAlign: TextAlign.center,
               ),
             ),
-            const SizedBox(height: 10), // Spaziatura tra i componenti.
+            SizedBox(height: 10), // Spaziatura tra i componenti.
 
-            const QueryTWM4(),
-
-            Center(
-              child: SizedBox(
-                width: screenWidth * 0.98,
-                height: 200,
-                child: Image.asset(
-                  'assets/images/QM/QM4.png', // Percorso dell'immagine
-                  fit: BoxFit
-                      .contain, // Usa BoxFit.contain per evitare che l'immagine venga tagliata
-                ),
+            QueryTWM4(),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16.0),
+              child: Text(
+                'Output ',
+                style: AppFonts
+                    .textBold2, // Assicurati che AppFonts.textRegular sia definito
               ),
             ),
+            SizedBox(height: 10),
+            OutputTWM4(),
           ],
         ),
       ),
       bottomNavigationBar:
           const BottomBar(), // Assicurati che BottomBar sia definito correttamente
+    );
+  }
+}
+
+class OutputTWM4 extends StatelessWidget {
+  const OutputTWM4({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 10.0),
+      child: Text.rich(
+        TextSpan(
+          children: [
+            _buildTextSpan('{', false),
+            _buildTextSpan('"averageSalary":', true),
+            _buildTextSpan(' 115348.93935604877,\n', false),
+            _buildTextSpan('"educationLevel":', true),
+            _buildTextSpan(' "Master ’s"\n', false),
+            _buildTextSpan('},\n', false),
+            _buildTextSpan('{', false),
+            _buildTextSpan('"averageSalary":', true),
+            _buildTextSpan(' 115320.96336686077,\n', false),
+            _buildTextSpan('"educationLevel":', true),
+            _buildTextSpan(' "Bachelor ’s"\n', false),
+            _buildTextSpan('},\n', false),
+            _buildTextSpan('{', false),
+            _buildTextSpan('"averageSalary":', true),
+            _buildTextSpan(' 114665.00756878388,\n', false),
+            _buildTextSpan('"educationLevel":', true),
+            _buildTextSpan(' "PhD"\n', false),
+            _buildTextSpan('},\n', false),
+            _buildTextSpan('{', false),
+            _buildTextSpan('"averageSalary":', true),
+            _buildTextSpan(' 114579.17316287289,\n', false),
+            _buildTextSpan('"educationLevel":', true),
+            _buildTextSpan(' "High School "\n', false),
+            _buildTextSpan('}\n', false),
+          ],
+        ),
+        textAlign: TextAlign.left,
+      ),
+    );
+  }
+
+  TextSpan _buildTextSpan(String text, [bool isBold = false]) {
+    return TextSpan(
+      text: text,
+      style: TextStyle(
+        fontFamily: 'MyFont',
+        fontSize: isBold ? 16 : 14,
+        fontWeight: isBold ? FontWeight.bold : FontWeight.normal,
+      ),
     );
   }
 }
@@ -80,39 +131,52 @@ class QueryTWM4 extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10.0),
       child: Text.rich(
-    TextSpan(
-  children: [
-    _buildTextSpan('SMBUD_project.Carrer.aggregate([\n', true),
-    _buildTextSpan('  {\n', false),
-    _buildTextSpan('    "\$group":', true),
-    _buildTextSpan(' {\n', false),
-    _buildTextSpan('      "_id": "\$Current Occupation",\n', false),
-    _buildTextSpan('      "Satisfaction": { "\$avg": "\$Job Satisfaction" }\n', false),
-    _buildTextSpan('    }\n', false),
-    _buildTextSpan('  },\n', false),
-    _buildTextSpan('  {\n', false),
-    _buildTextSpan('    "\$match":', true),
-    _buildTextSpan(' {\n', false),
-    _buildTextSpan('      "_id": { "\$ne": null }\n', false),
-    _buildTextSpan('    }\n', false),
-    _buildTextSpan('  },\n', false),
-    _buildTextSpan('  {\n', false),
-    _buildTextSpan('    "\$project":', true),
-    _buildTextSpan(' {\n', false),
-    _buildTextSpan('      "Occupation": "\$_id",\n', false),
-    _buildTextSpan('      "_id": 0,\n', false),
-    _buildTextSpan('      "Satisfaction": 1\n', false),
-    _buildTextSpan('    }\n', false),
-    _buildTextSpan('  },\n', false),
-    _buildTextSpan('  {\n', false),
-    _buildTextSpan('    "\$sort":', true),
-    _buildTextSpan(' { "Satisfaction": -1 }\n', false),
-    _buildTextSpan('  }\n', false),
-    _buildTextSpan(']);\n', false),
-  ],
-),
-
-
+        TextSpan(
+          children: [
+            _buildTextSpan('SMBUD_project . Carrer . aggregate ([\n', true),
+            _buildTextSpan('  {\n', false),
+            _buildTextSpan('    "\$group":', true),
+            _buildTextSpan(' {\n', false),
+            _buildTextSpan('      "_id":', false),
+            _buildTextSpan(' "\$Education Level",\n', false),
+            _buildTextSpan('      "averageSalary":', false),
+            _buildTextSpan(' {\n', false),
+            _buildTextSpan('        "\$avg":', false),
+            _buildTextSpan(' "\$Salary"\n', false),
+            _buildTextSpan('      }\n', false),
+            _buildTextSpan('    },\n', false),
+            _buildTextSpan('  },\n', false),
+            _buildTextSpan('  {\n', false),
+            _buildTextSpan('    "\$match":', true),
+            _buildTextSpan(' {\n', false),
+            _buildTextSpan('      "_id":', false),
+            _buildTextSpan(' {\n', false),
+            _buildTextSpan('        "\$ne":', false),
+            _buildTextSpan(' null\n', false),
+            _buildTextSpan('      }\n', false),
+            _buildTextSpan('    }\n', false),
+            _buildTextSpan('  },\n', false),
+            _buildTextSpan('  {\n', false),
+            _buildTextSpan('    "\$project":', true),
+            _buildTextSpan(' {\n', false),
+            _buildTextSpan('      "educationLevel":', false),
+            _buildTextSpan(' "\$_id",\n', false),
+            _buildTextSpan('      "_id":', true),
+            _buildTextSpan(' 0,\n', false),
+            _buildTextSpan('      "averageSalary":', false),
+            _buildTextSpan(' 1\n', false),
+            _buildTextSpan('    }\n', false),
+            _buildTextSpan('  },\n', false),
+            _buildTextSpan('  {\n', false),
+            _buildTextSpan('    "\$sort":', true),
+            _buildTextSpan(' {\n', false),
+            _buildTextSpan('      "averageSalary":', false),
+            _buildTextSpan(' -1\n', false),
+            _buildTextSpan('    }\n', false),
+            _buildTextSpan('  }\n', false),
+            _buildTextSpan(']);\n', false),
+          ],
+        ),
         textAlign: TextAlign.left,
       ),
     );

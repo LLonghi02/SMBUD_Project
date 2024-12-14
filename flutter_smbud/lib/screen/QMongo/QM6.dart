@@ -21,17 +21,17 @@ class _QM6State extends ConsumerState<QM6> {
       appBar: const TopBar(
         title: 'MongoDB',
       ),
-      body: SingleChildScrollView(
+      body: const SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const SizedBox(height: 18), // Spaziatura tra i componenti.
+            SizedBox(height: 18), // Spaziatura tra i componenti.
 
             // Titolo
-            const Padding(
+            Padding(
               padding: EdgeInsets.symmetric(horizontal: 16.0),
               child: Text(
-                'Selling Hubs',
+                'Relation between experience and job opportunities',
                 style: AppFonts
                     .textBold, // Assicurati che AppFonts.textBold sia definito
                 textAlign: TextAlign.center,
@@ -39,30 +39,28 @@ class _QM6State extends ConsumerState<QM6> {
             ),
 
             // Descrizione del titolo
-            const Padding(
+            Padding(
               padding: EdgeInsets.symmetric(horizontal: 16.0),
               child: Text(
-                'Retrieve the cities with most sold units from their stores.Useful to track where to deliver most of items, and detect potential warehouses position',
+                'Analyse the relationship between years of experience and job opportunities, ranking them by highest average opportunity',
                 style: AppFonts
                     .textQ, // Assicurati che AppFonts.textRegular sia definito
                 textAlign: TextAlign.center,
               ),
             ),
-            const SizedBox(height: 10), // Spaziatura tra i componenti.
+            SizedBox(height: 10), // Spaziatura tra i componenti.
 
-            const QueryTWM6(),
-
-            Center(
-              child: SizedBox(
-                width: screenWidth * 0.98,
-                height: 200,
-                child: Image.asset(
-                  'assets/images/QM/QM6.png', // Percorso dell'immagine
-                  fit: BoxFit
-                      .contain, // Usa BoxFit.contain per evitare che l'immagine venga tagliata
-                ),
+            QueryTWM6(),
+ Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16.0),
+              child: Text(
+                'Output - Partial',
+                style: AppFonts
+                    .textBold2, // Assicurati che AppFonts.textRegular sia definito
               ),
             ),
+            SizedBox(height: 10),
+            OutputTWM5(),
           ],
         ),
       ),
@@ -72,6 +70,57 @@ class _QM6State extends ConsumerState<QM6> {
   }
 }
 
+class OutputTWM6 extends StatelessWidget {
+  const OutputTWM6({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 10.0),
+      child: Text.rich(
+TextSpan(
+  children: [
+    _buildTextSpan('[\n', true),
+    _buildTextSpan('  {\n', false),
+    _buildTextSpan('    "avgJobOpportunities":', true),
+    _buildTextSpan(' 52.05675954592363,\n', false),
+    _buildTextSpan('    "yearsOfExperience":', true),
+    _buildTextSpan(' 20\n', false),
+    _buildTextSpan('  },\n', false),
+    _buildTextSpan('  {\n', false),
+    _buildTextSpan('    "avgJobOpportunities":', true),
+    _buildTextSpan(' 51.99171842650104,\n', false),
+    _buildTextSpan('    "yearsOfExperience":', true),
+    _buildTextSpan(' 33\n', false),
+    _buildTextSpan('  },\n', false),
+    _buildTextSpan('  {\n', false),
+    _buildTextSpan('    "avgJobOpportunities":', true),
+    _buildTextSpan(' 51.48221757322176,\n', false),
+    _buildTextSpan('    "yearsOfExperience":', true),
+    _buildTextSpan(' 32\n', false),
+    _buildTextSpan('  },\n', false),
+    _buildTextSpan('  // ... \n', false),
+    _buildTextSpan(']\n', false),
+  ],
+)
+,
+
+        textAlign: TextAlign.left,
+      ),
+    );
+  }
+
+  TextSpan _buildTextSpan(String text, [bool isBold = false]) {
+    return TextSpan(
+      text: text,
+      style: TextStyle(
+        fontFamily: 'MyFont',
+        fontSize: isBold ? 16 : 14,
+        fontWeight: isBold ? FontWeight.bold : FontWeight.normal,
+      ),
+    );
+  }
+}
 class QueryTWM6 extends StatelessWidget {
   const QueryTWM6({super.key});
 
@@ -80,38 +129,47 @@ class QueryTWM6 extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10.0),
       child: Text.rich(
-    TextSpan(
+   TextSpan(
   children: [
-    _buildTextSpan('SMBUD_project.Carrer.aggregate([\n', true),
+    _buildTextSpan('SMBUD_project . Carrer . aggregate ([\n', true),
     _buildTextSpan('  {\n', false),
     _buildTextSpan('    "\$group":', true),
     _buildTextSpan(' {\n', false),
-    _buildTextSpan('      "_id": "\$Current Occupation",\n', false),
-    _buildTextSpan('      "Satisfaction": { "\$avg": "\$Job Satisfaction" }\n', false),
-    _buildTextSpan('    }\n', false),
-    _buildTextSpan('  },\n', false),
-    _buildTextSpan('  {\n', false),
-    _buildTextSpan('    "\$match":', true),
+    _buildTextSpan('      "_id":', false),
     _buildTextSpan(' {\n', false),
-    _buildTextSpan('      "_id": { "\$ne": null }\n', false),
+    _buildTextSpan('        "yearsOfExperience":', false),
+    _buildTextSpan(' " \$Years of Experience ",\n', false),
+    _buildTextSpan('      },\n', false),
+    _buildTextSpan('      "avgJobOpportunities":', false),
+    _buildTextSpan(' {\n', false),
+    _buildTextSpan('        "\$avg":', false),
+    _buildTextSpan(' " \$Job Opportunities "\n', false),
+    _buildTextSpan('      }\n', false),
     _buildTextSpan('    }\n', false),
     _buildTextSpan('  },\n', false),
     _buildTextSpan('  {\n', false),
     _buildTextSpan('    "\$project":', true),
     _buildTextSpan(' {\n', false),
-    _buildTextSpan('      "Occupation": "\$_id",\n', false),
-    _buildTextSpan('      "_id": 0,\n', false),
-    _buildTextSpan('      "Satisfaction": 1\n', false),
+    _buildTextSpan('      "yearsOfExperience":', false),
+    _buildTextSpan(' " \$_id . yearsOfExperience ",\n', false),
+    _buildTextSpan('      "avgJobOpportunities":', false),
+    _buildTextSpan(' 1,\n', false),
+    _buildTextSpan('      "_id":', false),
+    _buildTextSpan(' 0\n', false),
     _buildTextSpan('    }\n', false),
     _buildTextSpan('  },\n', false),
     _buildTextSpan('  {\n', false),
     _buildTextSpan('    "\$sort":', true),
-    _buildTextSpan(' { "Satisfaction": -1 }\n', false),
+    _buildTextSpan(' {\n', false),
+    _buildTextSpan('      "avgJobOpportunities":', false),
+    _buildTextSpan(' -1\n', false),
+    _buildTextSpan('    }\n', false),
     _buildTextSpan('  }\n', false),
-    _buildTextSpan(']);\n', false),
+    _buildTextSpan('])\n', false),
   ],
-),
+)
 
+,
 
         textAlign: TextAlign.left,
       ),

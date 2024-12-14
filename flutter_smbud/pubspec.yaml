@@ -42,6 +42,9 @@ flutter:
     - assets/images/QN/QN5.png
     - assets/images/QN/QN6.png
     - assets/images/QN/QN7.png
+    - assets/images/QN/QN8.png
+    - assets/images/QN/QN9.png
+    - assets/images/QN/QN10.png
 
 
   fonts:

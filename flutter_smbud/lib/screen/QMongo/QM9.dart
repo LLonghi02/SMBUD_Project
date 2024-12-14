@@ -21,17 +21,17 @@ class _QM9State extends ConsumerState<QM9> {
       appBar: const TopBar(
         title: 'MongoDB',
       ),
-      body: SingleChildScrollView(
+      body: const SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const SizedBox(height: 18), // Spaziatura tra i componenti.
+            SizedBox(height: 18), // Spaziatura tra i componenti.
 
             // Titolo
-            const Padding(
+            Padding(
               padding: EdgeInsets.symmetric(horizontal: 16.0),
               child: Text(
-                'Selling Hubs',
+                'Gender distribution Analysis pt.2',
                 style: AppFonts
                     .textBold, // Assicurati che AppFonts.textBold sia definito
                 textAlign: TextAlign.center,
@@ -39,30 +39,29 @@ class _QM9State extends ConsumerState<QM9> {
             ),
 
             // Descrizione del titolo
-            const Padding(
+            Padding(
               padding: EdgeInsets.symmetric(horizontal: 16.0),
               child: Text(
-                'Retrieve the cities with most sold units from their stores.Useful to track where to deliver most of items, and detect potential warehouses position',
+                'For each pair of positions and education level, it calculates the distribution of men and women',
                 style: AppFonts
                     .textQ, // Assicurati che AppFonts.textRegular sia definito
                 textAlign: TextAlign.center,
               ),
             ),
-            const SizedBox(height: 10), // Spaziatura tra i componenti.
+            SizedBox(height: 10), // Spaziatura tra i componenti.
 
-            const QueryTWM9(),
+            QueryTWM9(),
 
-            Center(
-              child: SizedBox(
-                width: screenWidth * 0.98,
-                height: 200,
-                child: Image.asset(
-                  'assets/images/QM/QM9.png', // Percorso dell'immagine
-                  fit: BoxFit
-                      .contain, // Usa BoxFit.contain per evitare che l'immagine venga tagliata
-                ),
+ Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16.0),
+              child: Text(
+                'Output - Partial',
+                style: AppFonts
+                    .textBold2, // Assicurati che AppFonts.textRegular sia definito
               ),
             ),
+            SizedBox(height: 10),
+            OutputTWM9(),
           ],
         ),
       ),
@@ -72,6 +71,49 @@ class _QM9State extends ConsumerState<QM9> {
   }
 }
 
+class OutputTWM9 extends StatelessWidget {
+  const OutputTWM9({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 10.0),
+      child: Text.rich(
+TextSpan(
+  children: [
+    _buildTextSpan('[\n', true),
+    _buildTextSpan('  {\n', false),
+    _buildTextSpan('    "occupation":', true),
+    _buildTextSpan(' " Artist ",\n', false),
+    _buildTextSpan('    "educationLevel":', true),
+    _buildTextSpan(' "PhD",\n', false),
+    _buildTextSpan('    "menCount":', true),
+    _buildTextSpan(' 476,\n', false),
+    _buildTextSpan('    "womenCount":', true),
+    _buildTextSpan(' 492\n', false),
+    _buildTextSpan('  },...\n', false),
+    _buildTextSpan(']\n', false),
+  ],
+)
+,
+
+
+        textAlign: TextAlign.left,
+      ),
+    );
+  }
+
+  TextSpan _buildTextSpan(String text, [bool isBold = false]) {
+    return TextSpan(
+      text: text,
+      style: TextStyle(
+        fontFamily: 'MyFont',
+        fontSize: isBold ? 16 : 14,
+        fontWeight: isBold ? FontWeight.bold : FontWeight.normal,
+      ),
+    );
+  }
+}
 class QueryTWM9 extends StatelessWidget {
   const QueryTWM9({super.key});
 
@@ -80,37 +122,97 @@ class QueryTWM9 extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10.0),
       child: Text.rich(
-    TextSpan(
+   TextSpan(
   children: [
-    _buildTextSpan('SMBUD_project.Carrer.aggregate([\n', true),
+   _buildTextSpan('SMBUD_project . Carrer . aggregate ([\n', true),
+    _buildTextSpan('[\n', false),
     _buildTextSpan('  {\n', false),
-    _buildTextSpan('    "\$group":', true),
-    _buildTextSpan(' {\n', false),
-    _buildTextSpan('      "_id": "\$Current Occupation",\n', false),
-    _buildTextSpan('      "Satisfaction": { "\$avg": "\$Job Satisfaction" }\n', false),
+    _buildTextSpan(' {}\n', false),
+    _buildTextSpan('    "\$group": {\n', true),
+    _buildTextSpan('      "_id": {\n', false),
+    _buildTextSpan('        "occupation":', false),
+    _buildTextSpan(' " \$Current Occupation ",\n', false),
+    _buildTextSpan('        "gender":', false),
+    _buildTextSpan(' " \$Gender ",\n', false),
+    _buildTextSpan('        "educationLevel":', false),
+    _buildTextSpan(' " \$Education Level "\n', false),
+    _buildTextSpan('      },\n', false),
+    _buildTextSpan('      "count":', false),
+    _buildTextSpan(' { \$sum : 1 }\n', false),
     _buildTextSpan('    }\n', false),
     _buildTextSpan('  },\n', false),
+    
     _buildTextSpan('  {\n', false),
-    _buildTextSpan('    "\$match":', true),
-    _buildTextSpan(' {\n', false),
-    _buildTextSpan('      "_id": { "\$ne": null }\n', false),
+    _buildTextSpan(' {}\n', false),
+    _buildTextSpan('    "\$group": {\n', true),
+    _buildTextSpan('      "_id": {\n', false),
+    _buildTextSpan('        "occupation":', false),
+    _buildTextSpan(' " \$_id . occupation ",\n', false),
+    _buildTextSpan('        "educationLevel":', false),
+    _buildTextSpan(' " \$_id . educationLevel "\n', false),
+    _buildTextSpan('      },\n', false),
+    _buildTextSpan('      "countsByGender": {\n', false),
+    _buildTextSpan('        "\$push": {\n', false),
+    _buildTextSpan('          "gender":', false),
+    _buildTextSpan(' " \$_id . gender ",\n', false),
+    _buildTextSpan('          "count":', false),
+    _buildTextSpan(' " \$count "\n', false),
+    _buildTextSpan('        }\n', false),
+    _buildTextSpan('      }\n', false),
     _buildTextSpan('    }\n', false),
     _buildTextSpan('  },\n', false),
+    
     _buildTextSpan('  {\n', false),
+    _buildTextSpan(' {}\n', false),
     _buildTextSpan('    "\$project":', true),
-    _buildTextSpan(' {\n', false),
-    _buildTextSpan('      "Occupation": "\$_id",\n', false),
-    _buildTextSpan('      "_id": 0,\n', false),
-    _buildTextSpan('      "Satisfaction": 1\n', false),
+  
+    _buildTextSpan('      " {\n      _id":', false),
+    _buildTextSpan(' 0,\n', false),
+    _buildTextSpan('      "occupation":', false),
+    _buildTextSpan(' " \$_id . occupation ",\n', false),
+    _buildTextSpan('      "educationLevel":', false),
+    _buildTextSpan(' " \$_id . educationLevel ",\n', false),
+    _buildTextSpan('      "menCount": {\n', false),
+    _buildTextSpan('        "\$reduce": {\n', false),
+    _buildTextSpan('          "input":', false),
+    _buildTextSpan(' " \$countsByGender ",\n', false),
+    _buildTextSpan('          "initialValue":', false),
+    _buildTextSpan(' 0,\n', false),
+    _buildTextSpan('          "in": {\n', false),
+    _buildTextSpan('            "\$cond": [\n', false),
+    _buildTextSpan('              { "\$eq": [ " \$\$this . gender ", " Male " ] },\n', false),
+    _buildTextSpan('              { "\$add": [ " \$\$value ", " \$\$this . count " ] },\n', false),
+    _buildTextSpan('              " \$\$value "\n', false),
+    _buildTextSpan('            ]\n', false),
+    _buildTextSpan('          }\n', false),
+    _buildTextSpan('        }\n', false),
+    _buildTextSpan('      },\n', false),
+    _buildTextSpan('      "womenCount": {\n', false),
+    _buildTextSpan('        "\$reduce": {\n', false),
+    _buildTextSpan('          "input":', false),
+    _buildTextSpan(' " \$countsByGender ",\n', false),
+    _buildTextSpan('          "initialValue":', false),
+    _buildTextSpan(' 0,\n', false),
+    _buildTextSpan('          "in": {\n', false),
+    _buildTextSpan('            "\$cond": [\n', false),
+    _buildTextSpan('              { "\$eq": [ " \$\$this . gender ", " Female " ] },\n', false),
+    _buildTextSpan('              { "\$add": [ " \$\$value ", " \$\$this . count " ] },\n', false),
+    _buildTextSpan('              " \$\$value "\n', false),
+    _buildTextSpan('            ]\n', false),
+    _buildTextSpan('          }\n', false),
+    _buildTextSpan('        }\n', false),
+    _buildTextSpan('      }\n', false),
     _buildTextSpan('    }\n', false),
     _buildTextSpan('  },\n', false),
+    
+    // Final Sort
     _buildTextSpan('  {\n', false),
-    _buildTextSpan('    "\$sort":', true),
-    _buildTextSpan(' { "Satisfaction": -1 }\n', false),
-    _buildTextSpan('  }\n', false),
-    _buildTextSpan(']);\n', false),
+    _buildTextSpan('    "\$sort"', true),
+    _buildTextSpan(' : { "occupation": 1 }\n }\n', false),
+    _buildTextSpan(']\n', false),
   ],
-),
+)
+,
 
 
         textAlign: TextAlign.left,
