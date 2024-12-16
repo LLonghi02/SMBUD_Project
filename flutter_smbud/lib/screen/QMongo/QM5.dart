@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_smbud/importer.dart'; // Assicurati che AppFonts, TopBar, BottomBar siano correttamente definiti
 
 class QM5 extends ConsumerStatefulWidget {
@@ -14,7 +12,6 @@ class _QM5State extends ConsumerState<QM5> {
   Widget build(BuildContext context) {
     // Usa il WidgetRef per accedere ai provider
     final backcolor = ref.watch(vcProvider);
-    double screenWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
       backgroundColor: backcolor,
@@ -54,7 +51,7 @@ class _QM5State extends ConsumerState<QM5> {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 16.0),
               child: Text(
-                'Output',
+                'Output - partial',
                 style: AppFonts
                     .textBold2, // Assicurati che AppFonts.textRegular sia definito
               ),

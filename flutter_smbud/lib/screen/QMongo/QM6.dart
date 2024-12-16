@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_smbud/importer.dart'; // Assicurati che AppFonts, TopBar, BottomBar siano correttamente definiti
 
 class QM6 extends ConsumerStatefulWidget {
@@ -14,7 +12,6 @@ class _QM6State extends ConsumerState<QM6> {
   Widget build(BuildContext context) {
     // Usa il WidgetRef per accedere ai provider
     final backcolor = ref.watch(vcProvider);
-    double screenWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
       backgroundColor: backcolor,
@@ -51,7 +48,7 @@ class _QM6State extends ConsumerState<QM6> {
             SizedBox(height: 10), // Spaziatura tra i componenti.
 
             QueryTWM6(),
- Padding(
+            Padding(
               padding: EdgeInsets.symmetric(horizontal: 16.0),
               child: Text(
                 'Output - Partial',
@@ -60,7 +57,7 @@ class _QM6State extends ConsumerState<QM6> {
               ),
             ),
             SizedBox(height: 10),
-            OutputTWM5(),
+            OutputTWM6(),
           ],
         ),
       ),
@@ -78,33 +75,31 @@ class OutputTWM6 extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10.0),
       child: Text.rich(
-TextSpan(
-  children: [
-    _buildTextSpan('[\n', true),
-    _buildTextSpan('  {\n', false),
-    _buildTextSpan('    "avgJobOpportunities":', true),
-    _buildTextSpan(' 52.05675954592363,\n', false),
-    _buildTextSpan('    "yearsOfExperience":', true),
-    _buildTextSpan(' 20\n', false),
-    _buildTextSpan('  },\n', false),
-    _buildTextSpan('  {\n', false),
-    _buildTextSpan('    "avgJobOpportunities":', true),
-    _buildTextSpan(' 51.99171842650104,\n', false),
-    _buildTextSpan('    "yearsOfExperience":', true),
-    _buildTextSpan(' 33\n', false),
-    _buildTextSpan('  },\n', false),
-    _buildTextSpan('  {\n', false),
-    _buildTextSpan('    "avgJobOpportunities":', true),
-    _buildTextSpan(' 51.48221757322176,\n', false),
-    _buildTextSpan('    "yearsOfExperience":', true),
-    _buildTextSpan(' 32\n', false),
-    _buildTextSpan('  },\n', false),
-    _buildTextSpan('  // ... \n', false),
-    _buildTextSpan(']\n', false),
-  ],
-)
-,
-
+        TextSpan(
+          children: [
+            _buildTextSpan('[\n', true),
+            _buildTextSpan('  {\n', false),
+            _buildTextSpan('    "avgJobOpportunities":', true),
+            _buildTextSpan(' 52.05675954592363,\n', false),
+            _buildTextSpan('    "yearsOfExperience":', true),
+            _buildTextSpan(' 20\n', false),
+            _buildTextSpan('  },\n', false),
+            _buildTextSpan('  {\n', false),
+            _buildTextSpan('    "avgJobOpportunities":', true),
+            _buildTextSpan(' 51.99171842650104,\n', false),
+            _buildTextSpan('    "yearsOfExperience":', true),
+            _buildTextSpan(' 33\n', false),
+            _buildTextSpan('  },\n', false),
+            _buildTextSpan('  {\n', false),
+            _buildTextSpan('    "avgJobOpportunities":', true),
+            _buildTextSpan(' 51.48221757322176,\n', false),
+            _buildTextSpan('    "yearsOfExperience":', true),
+            _buildTextSpan(' 32\n', false),
+            _buildTextSpan('  },\n', false),
+            _buildTextSpan('  // ... \n', false),
+            _buildTextSpan(']\n', false),
+          ],
+        ),
         textAlign: TextAlign.left,
       ),
     );
@@ -121,6 +116,7 @@ TextSpan(
     );
   }
 }
+
 class QueryTWM6 extends StatelessWidget {
   const QueryTWM6({super.key});
 
@@ -129,48 +125,45 @@ class QueryTWM6 extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10.0),
       child: Text.rich(
-   TextSpan(
-  children: [
-    _buildTextSpan('SMBUD_project . Carrer . aggregate ([\n', true),
-    _buildTextSpan('  {\n', false),
-    _buildTextSpan('    "\$group":', true),
-    _buildTextSpan(' {\n', false),
-    _buildTextSpan('      "_id":', false),
-    _buildTextSpan(' {\n', false),
-    _buildTextSpan('        "yearsOfExperience":', false),
-    _buildTextSpan(' " \$Years of Experience ",\n', false),
-    _buildTextSpan('      },\n', false),
-    _buildTextSpan('      "avgJobOpportunities":', false),
-    _buildTextSpan(' {\n', false),
-    _buildTextSpan('        "\$avg":', false),
-    _buildTextSpan(' " \$Job Opportunities "\n', false),
-    _buildTextSpan('      }\n', false),
-    _buildTextSpan('    }\n', false),
-    _buildTextSpan('  },\n', false),
-    _buildTextSpan('  {\n', false),
-    _buildTextSpan('    "\$project":', true),
-    _buildTextSpan(' {\n', false),
-    _buildTextSpan('      "yearsOfExperience":', false),
-    _buildTextSpan(' " \$_id . yearsOfExperience ",\n', false),
-    _buildTextSpan('      "avgJobOpportunities":', false),
-    _buildTextSpan(' 1,\n', false),
-    _buildTextSpan('      "_id":', false),
-    _buildTextSpan(' 0\n', false),
-    _buildTextSpan('    }\n', false),
-    _buildTextSpan('  },\n', false),
-    _buildTextSpan('  {\n', false),
-    _buildTextSpan('    "\$sort":', true),
-    _buildTextSpan(' {\n', false),
-    _buildTextSpan('      "avgJobOpportunities":', false),
-    _buildTextSpan(' -1\n', false),
-    _buildTextSpan('    }\n', false),
-    _buildTextSpan('  }\n', false),
-    _buildTextSpan('])\n', false),
-  ],
-)
-
-,
-
+        TextSpan(
+          children: [
+            _buildTextSpan('SMBUD_project . Carrer . aggregate ([\n', true),
+            _buildTextSpan('  {\n', false),
+            _buildTextSpan('    "\$group":', true),
+            _buildTextSpan(' {\n', false),
+            _buildTextSpan('      "_id":', false),
+            _buildTextSpan(' {\n', false),
+            _buildTextSpan('        "yearsOfExperience":', false),
+            _buildTextSpan(' " \$Years of Experience ",\n', false),
+            _buildTextSpan('      },\n', false),
+            _buildTextSpan('      "avgJobOpportunities":', false),
+            _buildTextSpan(' {\n', false),
+            _buildTextSpan('        "\$avg":', false),
+            _buildTextSpan(' " \$Job Opportunities "\n', false),
+            _buildTextSpan('      }\n', false),
+            _buildTextSpan('    }\n', false),
+            _buildTextSpan('  },\n', false),
+            _buildTextSpan('  {\n', false),
+            _buildTextSpan('    "\$project":', true),
+            _buildTextSpan(' {\n', false),
+            _buildTextSpan('      "yearsOfExperience":', false),
+            _buildTextSpan(' " \$_id . yearsOfExperience ",\n', false),
+            _buildTextSpan('      "avgJobOpportunities":', false),
+            _buildTextSpan(' 1,\n', false),
+            _buildTextSpan('      "_id":', false),
+            _buildTextSpan(' 0\n', false),
+            _buildTextSpan('    }\n', false),
+            _buildTextSpan('  },\n', false),
+            _buildTextSpan('  {\n', false),
+            _buildTextSpan('    "\$sort":', true),
+            _buildTextSpan(' {\n', false),
+            _buildTextSpan('      "avgJobOpportunities":', false),
+            _buildTextSpan(' -1\n', false),
+            _buildTextSpan('    }\n', false),
+            _buildTextSpan('  }\n', false),
+            _buildTextSpan('])\n', false),
+          ],
+        ),
         textAlign: TextAlign.left,
       ),
     );

@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.flutter_smbud"
+    namespace = "com.gruppo49.flutter_smbud"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
@@ -18,25 +18,35 @@ android {
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8
     }
-
-    defaultConfig {
-        // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId = "com.example.flutter_smbud"
-        // You can update the following values to match your application needs.
-        // For more information, see: https://flutter.dev/to/review-gradle-config.
-        minSdk = flutter.minSdkVersion
-        targetSdk = flutter.targetSdkVersion
-        versionCode = flutter.versionCode
-        versionName = flutter.versionName
-    }
-
-    buildTypes {
+ signingConfigs {
         release {
-            // TODO: Add your own signing config for the release build.
-            // Signing with the debug keys for now, so `flutter run --release` works.
-            signingConfig = signingConfigs.debug
+            keyAlias 'my-key-alias'
+            keyPassword 'android'
+            storeFile file('C:/Users/laral/Desktop/SMBUD/SMBUD_Project/flutter_smbud/my-release-key.jks')
+            storePassword 'android'
         }
     }
+    defaultConfig {
+        // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
+        applicationId = "com.gruppo49.flutter_smbud"
+        // You can update the following values to match your application needs.
+        // For more information, see: https://flutter.dev/to/review-gradle-config.
+         minSdkVersion 21 // Assicurati che sia compatibile
+    targetSdkVersion 33
+    versionCode 1
+    versionName "1.0"
+    }
+
+   buildTypes {
+    release {
+        signingConfig signingConfigs.release
+                shrinkResources true // Rimuove risorse inutilizzate
+
+        minifyEnabled true
+        proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+    }
+}
+
 }
 
 flutter {

@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_smbud/importer.dart'; // Assicurati che AppFonts, TopBar, BottomBar siano correttamente definiti
 
 class QM10 extends ConsumerStatefulWidget {
@@ -14,21 +12,20 @@ class _QM10State extends ConsumerState<QM10> {
   Widget build(BuildContext context) {
     // Usa il WidgetRef per accedere ai provider
     final backcolor = ref.watch(vcProvider);
-    double screenWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
       backgroundColor: backcolor,
       appBar: const TopBar(
         title: 'MongoDB',
       ),
-      body: SingleChildScrollView(
+      body: const SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const SizedBox(height: 18), // Spaziatura tra i componenti.
+            SizedBox(height: 18), // Spaziatura tra i componenti.
 
             // Titolo
-            const Padding(
+            Padding(
               padding: EdgeInsets.symmetric(horizontal: 16.0),
               child: Text(
                 'Carrer Salary trend',
@@ -39,7 +36,7 @@ class _QM10State extends ConsumerState<QM10> {
             ),
 
             // Descrizione del titolo
-            const Padding(
+            Padding(
               padding: EdgeInsets.symmetric(horizontal: 16.0),
               child: Text(
                 'it calculates the salary trend for each position by number of experience',
@@ -48,9 +45,9 @@ class _QM10State extends ConsumerState<QM10> {
                 textAlign: TextAlign.center,
               ),
             ),
-            const SizedBox(height: 10), // Spaziatura tra i componenti.
+            SizedBox(height: 10), // Spaziatura tra i componenti.
 
-            const QueryTWM10(),
+            QueryTWM10(),
  Padding(
               padding: EdgeInsets.symmetric(horizontal: 16.0),
               child: Text(

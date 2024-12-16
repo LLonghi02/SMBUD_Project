@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_smbud/importer.dart'; // Assicurati che AppFonts, TopBar, BottomBar siano correttamente definiti
 
 class QM9 extends ConsumerStatefulWidget {
@@ -14,7 +12,6 @@ class _QM9State extends ConsumerState<QM9> {
   Widget build(BuildContext context) {
     // Usa il WidgetRef per accedere ai provider
     final backcolor = ref.watch(vcProvider);
-    double screenWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
       backgroundColor: backcolor,

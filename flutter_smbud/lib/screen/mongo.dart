@@ -1,5 +1,4 @@
 import 'package:flutter_smbud/importer.dart';
-import 'package:flutter_smbud/screen/QMongo/QM1.dart';
 
 void main() {
   runApp(const ProviderScope(child: MyApp()));
