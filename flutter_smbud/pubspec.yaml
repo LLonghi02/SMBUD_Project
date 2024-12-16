@@ -34,6 +34,8 @@ flutter:
     - assets/images/work.png
     - assets/images/dataset/carrer.png
     - assets/images/dataset/food.png
+    - assets/images/dataset/food2.png
+    - assets/images/dataset/carrer2.png
     - assets/images/dataset/es_node.png
     - assets/images/QN/QN1.png
     - assets/images/QN/QN2.png

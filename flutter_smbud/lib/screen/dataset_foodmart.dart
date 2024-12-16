@@ -55,6 +55,22 @@ class _DSFoodState extends ConsumerState<DSFood> {
                   fit: BoxFit.contain,
                 ),
               ),
+               const Padding(
+                padding: EdgeInsets.all(10.0),
+                child: Text(
+                  "Node Labels and Their Properties",
+                  style: AppFonts.textBold,
+                  textAlign: TextAlign.center, // Testo centrato
+                ),
+              ),
+              SizedBox(
+                width: screenWidth * 0.90,
+                height: 400,
+                child: Image.asset(
+                  'assets/images/dataset/food2.png', // Percorso dell'immagine
+                  fit: BoxFit.contain,
+                ),
+              ),
             ],
           ),
         ),
